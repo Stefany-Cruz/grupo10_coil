@@ -1,0 +1,25 @@
+CREATE TABLE pacientes (
+    id bigint IDENTITY(1,1) PRIMARY KEY,       -- Identificador único del paciente
+    primer_nombre nvarchar(255) NOT NULL,      -- Primer nombre (obligatorio)
+    segundo_nombre nvarchar(255) NULL,         -- Segundo nombre (opcional)
+    apellido_paterno nvarchar(255) NOT NULL,   -- Primer apellido (obligatorio)
+    apellid_materno nvarchar(255) NULL,       -- Segundo apellido (opcional)
+    edad int NOT NULL,                         -- Edad
+    sexo nvarchar(50) NOT NULL,                -- Sexo
+    tipo_usuario nvarchar(255) NOT NULL,       -- Tipo de usuario (Oficinista, Deportista, Recuperación)
+    username nvarchar(255) NOT NULL UNIQUE,    -- Nombre de usuario único
+    password nvarchar(255) NOT NULL            -- Contraseña
+);
+
+CREATE TABLE historial_posturas (
+    id bigint IDENTITY(1,1) PRIMARY KEY,  
+    id_paciente bigint NOT NULL,           -- Relación con el ID de los pacientes
+    tipo_postura nvarchar(255) NOT NULL,   -- Tipo de postura detectada
+    duracion float NOT NULL,               -- Duración de la postura (en segundos)
+    fecha datetime NOT NULL,               -- Fecha y hora de la postura
+    FOREIGN KEY (id_paciente) REFERENCES pacientes(id)  -- Relación con la tabla pacientes
+);
+
+____________
+en mi caso la base se llama usuario
+---------------
